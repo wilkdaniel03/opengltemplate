@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "_deps/sdl2-src/include/SDL.h"
+#include "glad.h"
 
 SDL_Window *win;
 SDL_GLContext ctx;
@@ -18,6 +19,12 @@ int main() {
 	ctx = SDL_GL_CreateContext(win);
 	if(SDL_GL_MakeCurrent(win,ctx) < 0)
 		fprintf(stderr,"Failed to attach context\n");
+
+	gladLoadGLLoader(SDL_GL_GetProcAddress);
+	gladLoadGL();
+	glClearColor(0.,0.5,0.,1.);
+	glClear(GL_COLOR_BUFFER_BIT);
+	SDL_GL_SwapWindow(win);
 
 	SDL_Event event;
 
